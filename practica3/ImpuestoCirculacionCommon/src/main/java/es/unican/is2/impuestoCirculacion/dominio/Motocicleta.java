@@ -1,4 +1,5 @@
 package es.unican.is2.impuestoCirculacion.dominio;
+
 @SuppressWarnings("serial")
 public class Motocicleta extends Vehiculo
 {

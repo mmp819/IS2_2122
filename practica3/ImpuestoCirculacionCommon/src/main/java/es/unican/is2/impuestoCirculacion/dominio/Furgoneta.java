@@ -1,4 +1,5 @@
 package es.unican.is2.impuestoCirculacion.dominio;
+
 import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Furgoneta
