@@ -1,10 +1,34 @@
 package es.unican.is2.impuestoCirculacion.dominio;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 @SuppressWarnings("serial")
 public class Motocicleta extends Vehiculo
 {
+	// Cilindradas
+	private static final int CC_TRAMO_1 = 125;
+	private static final int CC_TRAMO_2 = 250;
+	private static final int CC_TRAMO_3 = 500;
+	private static final int CC_TRAMO_4 = 1000;
+	
+	// Tarifas base
+	private static final double TAR_TRAMO_1 = 8.84;
+	private static final double TAR_TRAMO_2 = 15.14;
+	private static final double TAR_TRAMO_3 = 30.30;
+	private static final double TAR_TRAMO_4 = 60.58;
+	private static final double TAR_TRAMO_5 = 121.56;
+		
+	// Exencion de matricula
+	private static final int EX_MATRICULA = 25;
+	
 	private int cilindrada;
 
+	public Motocicleta(String matricula, LocalDate fechaMatriculacion, int cilindrada) {
+		super(matricula, fechaMatriculacion);
+		this.cilindrada = cilindrada;
+	}
+	
     /**
      * Retorna la cilindrada de la motocicleta
      * @return cilindrada
@@ -16,7 +40,23 @@ public class Motocicleta extends Vehiculo
   
 	@Override
     public double precioImpuesto() {
-		//TODO
-		return 0;
+		double impuesto;
+		
+		// Determina el impuesto
+		if (ChronoUnit.YEARS.between(getFechaMatriculacion(), LocalDate.now())
+				> EX_MATRICULA) {
+			impuesto = 0.0;
+		} else if (cilindrada < CC_TRAMO_1) {
+			impuesto = TAR_TRAMO_1;
+		} else if (cilindrada >= CC_TRAMO_1 && cilindrada < CC_TRAMO_2) {
+			impuesto = TAR_TRAMO_2;
+		} else if (cilindrada >= CC_TRAMO_2 && cilindrada < CC_TRAMO_3) {
+			impuesto = TAR_TRAMO_3;
+		} else if (cilindrada >= CC_TRAMO_3 && cilindrada < CC_TRAMO_4) {
+			impuesto = TAR_TRAMO_4;
+		} else {
+			impuesto = TAR_TRAMO_5;
+		}
+    	return impuesto;
     }
 }
