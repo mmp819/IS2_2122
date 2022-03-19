@@ -4,6 +4,13 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 @SuppressWarnings("serial")
+
+/**
+ * Vehiculo de tipo motocicleta.
+ * 
+ * @author Mario Martin Perez <mmp819@alumnos.unican.es>
+ * @version 1.0
+ */
 public class Motocicleta extends Vehiculo
 {
 	// Cilindradas
@@ -17,21 +24,28 @@ public class Motocicleta extends Vehiculo
 	private static final double TAR_TRAMO_2 = 15.14;
 	private static final double TAR_TRAMO_3 = 30.30;
 	private static final double TAR_TRAMO_4 = 60.58;
-	private static final double TAR_TRAMO_5 = 121.56;
+	private static final double TAR_TRAMO_5 = 121.16;
 		
 	// Exencion de matricula
-	private static final int EX_MATRICULA = 25;
+	private static final int EX_MATRICULA = 25; // Anhos
 	
 	private int cilindrada;
 
+	/**
+	 * Construye un vehiculo de tipo motocicleta.
+	 * 
+	 * @param matricula Matricula.
+	 * @param fechaMatriculacion Fecha de matriculacion.
+	 * @param cilindrada Cilindrada en centimetros cubicos.
+	 */
 	public Motocicleta(String matricula, LocalDate fechaMatriculacion, int cilindrada) {
 		super(matricula, fechaMatriculacion);
 		this.cilindrada = cilindrada;
 	}
 	
     /**
-     * Retorna la cilindrada de la motocicleta
-     * @return cilindrada
+     * Retorna la cilindrada de la motocicleta.
+     * @return cilindrada.
      */
     public int getCilindrada() {
         return cilindrada;

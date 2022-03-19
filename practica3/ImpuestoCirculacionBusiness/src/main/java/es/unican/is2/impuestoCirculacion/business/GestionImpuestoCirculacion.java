@@ -98,13 +98,13 @@ public class GestionImpuestoCirculacion implements IGestionContribuyentes, IGest
 		} else { // Si no se encuentra al contribuyente.
 			return null;
 		}
-		return v;
 		
+		return v;	
 	}
 
 	/**
 	 * Elimina el vehiculo cuya matricula se pasa como parametro y 
-	 * que pertenece al contribuyente cuyo dni se pasa como parametro
+	 * que pertenece al contribuyente cuyo dni se pasa como parametro.
 	 * @param matricula Matricula del coche a eliminar.
 	 * @param dni DNI del propietario del vehiculo.
  	 * @return El vehiculo eliminado.
@@ -117,8 +117,9 @@ public class GestionImpuestoCirculacion implements IGestionContribuyentes, IGest
 		
 		if (c != null && v != null) { // Si existen el vehiculo y el propietario.
 			
-			if (!c.getVehiculos().contains(v)) { // Si el vehiculo ya esta asignado al propietario.
-				throw new OperacionNoValida("Ya existe un veh\u00edculo con esa matr\u00edla.");
+			if (!c.getVehiculos().contains(v)) { // Si el vehiculo no esta asignado al propietario.
+				throw new OperacionNoValida("El veh\u00edculo no pertenece a la persona con DNI " +
+												dni + ".");
 			}
 			
 			// Elimina el vehiculo del contribuyente.
@@ -131,6 +132,7 @@ public class GestionImpuestoCirculacion implements IGestionContribuyentes, IGest
 		} else { // Si no se encuentran el vehiculo o el propietario.
 			return null;
 		}
+		
 		return v;
 	}
 

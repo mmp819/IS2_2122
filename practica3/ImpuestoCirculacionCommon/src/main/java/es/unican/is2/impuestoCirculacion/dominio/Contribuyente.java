@@ -22,10 +22,10 @@ public class Contribuyente implements Serializable {
 	
 	/**
 	 * Crea un contribuyente sin vehiculos.
-	 * @param nombre
-	 * @param apellido1
-	 * @param apellido2
-	 * @param dni
+	 * @param nombre Nombre.
+	 * @param apellido1 Primer apellido.
+	 * @param apellido2 Segundo apellido.
+	 * @param dni DNI.
 	 */
 	public Contribuyente(String nombre, String apellido1, String apellido2, String dni) {
 		this.vehiculos = new LinkedList<Vehiculo>();
@@ -36,7 +36,7 @@ public class Contribuyente implements Serializable {
 	}
 
 	/**
-     * Retorna el total a pagar por el impuesto .
+     * Retorna el total a pagar por el impuesto.
      * de circulacion de todos sus vehiculos.
      * @return Valor del impuesto a pagar.
      */

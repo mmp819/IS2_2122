@@ -18,6 +18,7 @@ public class Furgoneta extends Turismo implements Serializable
     
     /**
      * Crea una furgoneta, con una asignacion determinada con respecto a si es comercial.
+     * 
      * @param matricula Matricula.
      * @param fechaMatriculacion Fecha de matriculacion.
      * @param potencia Potencia en caballos fiscales.

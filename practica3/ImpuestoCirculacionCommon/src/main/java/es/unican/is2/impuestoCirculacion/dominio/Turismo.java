@@ -5,6 +5,13 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 @SuppressWarnings("serial")
+
+/**
+ * Vehiculo de tipo turismo.
+ * 
+ * @author Mario Martin Perez <mmp819@alumnos.unican.es>
+ * @version 1.0
+ */
 public class Turismo extends Vehiculo implements Serializable
 {
 	// Potencias
@@ -21,24 +28,25 @@ public class Turismo extends Vehiculo implements Serializable
 	private static final double TAR_TRAMO_5 = 224;
 	
 	// Exencion de matricula
-	private static final int EX_MATRICULA = 25;
+	private static final int EX_MATRICULA = 25; // Anhos
 	
 	private double potencia;
 	
 	/**
-	 *
-	 * @param matricula
-	 * @param fechaMatriculacion
-	 * @param potencia
+	 * Construye un vehiculo de tipo turismo.
+	 * 
+	 * @param matricula Matricula.
+	 * @param fechaMatriculacion Fecha de matriculacion.
+	 * @param potencia Potencia en caballos fiscales.
 	 */
 	public Turismo(String matricula, LocalDate fechaMatriculacion, double potencia) {
 		super(matricula, fechaMatriculacion);
 		this.potencia = potencia;
-		
 	}
+	
 	/**
-	 * Retorna la potencia del turismo
-	 * @return potencia en caballos fiscales
+	 * Retorna la potencia del turismo.
+	 * @return potencia en caballos fiscales.
 	 */
     public double getPotencia() {
         return potencia;
@@ -46,8 +54,8 @@ public class Turismo extends Vehiculo implements Serializable
        
     
     /**
-     * Retorna el precio del impuesto a pagar
-     *  @return precio
+     * Retorna el precio del impuesto a pagar.
+     *  @return precio.
      */
 	@Override
     public double precioImpuesto() {
