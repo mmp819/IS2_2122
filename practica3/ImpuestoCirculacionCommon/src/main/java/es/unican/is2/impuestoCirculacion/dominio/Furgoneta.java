@@ -13,7 +13,6 @@ import java.time.LocalDate;
 public class Furgoneta extends Turismo implements Serializable
 {
     
-    private double potencia;
     private boolean comercial;
     
     /**
@@ -48,14 +47,6 @@ public class Furgoneta extends Turismo implements Serializable
     */
     public boolean getComercial() {
     	return comercial;
-    }
-    
-    /**
-	 * Retorna la potencia de la furgoneta.
-	 * @return potencia en caballos fiscales.
-	 */
-    public double getPotencia() {
-        return potencia;
     }
     
   
