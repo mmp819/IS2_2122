@@ -3,6 +3,8 @@ package es.unican.is2.impuestoCirculacion.dominio;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import es.unican.is2.impuestoCirculacion.business.OperacionNoValida;
+
 
 @SuppressWarnings("serial")
 
@@ -12,8 +14,8 @@ import java.time.LocalDate;
  * @author Mario Martin Perez <mmp819@alumnos.unican.es>
  * @version 1.0
  */
-public abstract class Vehiculo implements Serializable{
-  
+public abstract class Vehiculo implements Serializable {
+	
     private String matricula;
 	private LocalDate fechaMatriculacion;	
 
@@ -23,8 +25,15 @@ public abstract class Vehiculo implements Serializable{
 	 * @param matricula Matricula del vehiculo.
 	 * @param fechaMatriculacion Fecha de matriculacion del vehiculo.
 	 */
-	public Vehiculo(String matricula, LocalDate fechaMatriculacion) {
+	public Vehiculo(String matricula, LocalDate fechaMatriculacion) throws OperacionNoValida {
+		if (matricula == null) {
+			throw new OperacionNoValida("Matricula nula");
+		}
 		this.matricula = matricula;
+		
+		if (fechaMatriculacion == null || fechaMatriculacion.compareTo(LocalDate.now()) > 0) {
+			throw new OperacionNoValida("Fecha matriculacion superior a la actual");
+		}
 		this.fechaMatriculacion = fechaMatriculacion;
 	}
 	

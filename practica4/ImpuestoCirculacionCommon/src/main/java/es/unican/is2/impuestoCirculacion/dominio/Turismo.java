@@ -2,7 +2,8 @@ package es.unican.is2.impuestoCirculacion.dominio;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+
+import es.unican.is2.impuestoCirculacion.business.OperacionNoValida;
 
 @SuppressWarnings("serial")
 
@@ -39,8 +40,13 @@ public class Turismo extends Vehiculo implements Serializable
 	 * @param fechaMatriculacion Fecha de matriculacion.
 	 * @param potencia Potencia en caballos fiscales.
 	 */
-	public Turismo(String matricula, LocalDate fechaMatriculacion, double potencia) {
+	public Turismo(String matricula, LocalDate fechaMatriculacion, double potencia) 
+			throws OperacionNoValida {
 		super(matricula, fechaMatriculacion);
+		
+		if (potencia <= 0.0) {
+			throw new OperacionNoValida("Potencial igual o menor a 0.0");
+		}
 		this.potencia = potencia;
 	}
 	
@@ -62,8 +68,7 @@ public class Turismo extends Vehiculo implements Serializable
 		double impuesto;
 		
 		// Determina el impuesto
-		if (ChronoUnit.YEARS.between(getFechaMatriculacion(), LocalDate.now())
-				> EX_MATRICULA) {
+		if (getFechaMatriculacion().isBefore(LocalDate.now().minusYears(EX_MATRICULA))) {
 			impuesto = 0.0;
 		} else if (potencia < POT_TRAMO_1) {
 			impuesto = TAR_TRAMO_1;
