@@ -2,6 +2,8 @@ package es.unican.is2.impuestoCirculacion.dominio;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+
+import es.unican.is2.impuestoCirculacion.business.OperacionNoValida;
 @SuppressWarnings("serial")
 
 /**
@@ -24,7 +26,7 @@ public class Furgoneta extends Turismo implements Serializable
      * @param comercial Si la furgoneta tiene un uso comercial.
      */
     public Furgoneta(String matricula, LocalDate fechaMatriculacion, double potencia,
-    		boolean comercial) {
+    		boolean comercial) throws OperacionNoValida {
     	super(matricula, fechaMatriculacion, potencia);
     	this.comercial = comercial;
     }
@@ -35,7 +37,8 @@ public class Furgoneta extends Turismo implements Serializable
      * @param fechaMatriculacion Fecha de matriculacion.
      * @param potencia Potencia en caballos fiscales.
      */
-    public Furgoneta(String matricula, LocalDate fechaMatriculacion, double potencia) {
+    public Furgoneta(String matricula, LocalDate fechaMatriculacion, double potencia)
+    		throws OperacionNoValida {
     	super(matricula, fechaMatriculacion, potencia);
     	this.comercial = false;
     }

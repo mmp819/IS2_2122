@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.time.LocalDate;
-import org.junit.*;
+import org.junit.Test;
 
 import es.unican.is2.impuestoCirculacion.business.OperacionNoValida;
 
@@ -86,18 +86,6 @@ public class TurismoTest {
 		
 		try {
 			sut = new Turismo(null, LocalDate.of(2022, 3, 24), 5.0);
-			fail();
-		} catch (OperacionNoValida e) {
-		}
-		
-		try {
-			sut = new Turismo("1234-FNX", LocalDate.of(2022, 5, 1), 5.0);
-			fail();
-		} catch (OperacionNoValida e) {
-		}
-		
-		try {
-			sut = new Turismo("1234-FNX", LocalDate.of(2050, 1, 1), 5.0);
 			fail();
 		} catch (OperacionNoValida e) {
 		}

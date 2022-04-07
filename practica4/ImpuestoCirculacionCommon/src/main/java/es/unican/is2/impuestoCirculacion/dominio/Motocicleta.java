@@ -3,6 +3,8 @@ package es.unican.is2.impuestoCirculacion.dominio;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+import es.unican.is2.impuestoCirculacion.business.OperacionNoValida;
+
 @SuppressWarnings("serial")
 
 /**
@@ -38,7 +40,8 @@ public class Motocicleta extends Vehiculo
 	 * @param fechaMatriculacion Fecha de matriculacion.
 	 * @param cilindrada Cilindrada en centimetros cubicos.
 	 */
-	public Motocicleta(String matricula, LocalDate fechaMatriculacion, int cilindrada) {
+	public Motocicleta(String matricula, LocalDate fechaMatriculacion, int cilindrada) 
+			throws OperacionNoValida {
 		super(matricula, fechaMatriculacion);
 		this.cilindrada = cilindrada;
 	}
