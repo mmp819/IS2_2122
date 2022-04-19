@@ -72,16 +72,15 @@ public class Turismo extends Vehiculo implements Serializable
 			impuesto = 0.0;
 		} else if (potencia < POT_TRAMO_1) {
 			impuesto = TAR_TRAMO_1;
-		} else if (potencia >= POT_TRAMO_1 && potencia < POT_TRAMO_2) {
+		} else if (potencia < POT_TRAMO_2) {
 			impuesto = TAR_TRAMO_2;
-		} else if (potencia >= POT_TRAMO_2 && potencia < POT_TRAMO_3) {
+		} else if (potencia < POT_TRAMO_3) {
 			impuesto = TAR_TRAMO_3;
-		} else if (potencia >= POT_TRAMO_3 && potencia < POT_TRAMO_4) {
+		} else if (potencia < POT_TRAMO_4) {
 			impuesto = TAR_TRAMO_4;
 		} else {
 			impuesto = TAR_TRAMO_5;
 		}
     	return impuesto;
     }
-    
 }

@@ -1,7 +1,6 @@
 package es.unican.is2.impuestoCirculacion.dominio;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 import es.unican.is2.impuestoCirculacion.business.OperacionNoValida;
 
@@ -43,6 +42,10 @@ public class Motocicleta extends Vehiculo
 	public Motocicleta(String matricula, LocalDate fechaMatriculacion, int cilindrada) 
 			throws OperacionNoValida {
 		super(matricula, fechaMatriculacion);
+		
+		if (cilindrada <= 0) {
+			throw new OperacionNoValida("Potencial igual o menor a 0.0");
+		}
 		this.cilindrada = cilindrada;
 	}
 	
@@ -60,16 +63,15 @@ public class Motocicleta extends Vehiculo
 		double impuesto;
 		
 		// Determina el impuesto
-		if (ChronoUnit.YEARS.between(getFechaMatriculacion(), LocalDate.now())
-				> EX_MATRICULA) {
+		if (getFechaMatriculacion().isBefore(LocalDate.now().minusYears(EX_MATRICULA))) {
 			impuesto = 0.0;
 		} else if (cilindrada < CC_TRAMO_1) {
 			impuesto = TAR_TRAMO_1;
-		} else if (cilindrada >= CC_TRAMO_1 && cilindrada < CC_TRAMO_2) {
+		} else if (cilindrada < CC_TRAMO_2) {
 			impuesto = TAR_TRAMO_2;
-		} else if (cilindrada >= CC_TRAMO_2 && cilindrada < CC_TRAMO_3) {
+		} else if (cilindrada < CC_TRAMO_3) {
 			impuesto = TAR_TRAMO_3;
-		} else if (cilindrada >= CC_TRAMO_3 && cilindrada < CC_TRAMO_4) {
+		} else if (cilindrada < CC_TRAMO_4) {
 			impuesto = TAR_TRAMO_4;
 		} else {
 			impuesto = TAR_TRAMO_5;
