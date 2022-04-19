@@ -60,9 +60,8 @@ public class ListaOrdenadaAcotada<E extends Comparable<E>> implements IListaOrde
 		ultimo++;
 	}
 
-	public E remove(int indice) {
+	public E remove(int indice) throws IndexOutOfBoundsException {
 		if (indice > ultimo) {
-			System.out.println("INDICE: " + indice + "  ULTIMO: " + ultimo);
 			throw new IndexOutOfBoundsException();
 		}
 		E borrado = lista[indice];

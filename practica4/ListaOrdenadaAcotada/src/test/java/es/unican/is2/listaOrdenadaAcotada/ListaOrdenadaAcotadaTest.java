@@ -6,20 +6,35 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Clase de pruebas para ListaOrdenadaAcotada.
+ * 
+ * @author Mario Martin Perez <mmp819@alumnos.unican.es>
+ * @version 1.0
+ */
 public class ListaOrdenadaAcotadaTest {
 	
 	private ListaOrdenadaAcotada<Integer> sut;
 	
+	/**
+	 * Prepara el test.
+	 */
 	@Before
 	public void preparacion() {
 		sut = new ListaOrdenadaAcotada<Integer>();
 	}
 	
+	/**
+	 * Comprueba que el constructor crea una lista vacia.
+	 */
 	@Test
 	public void testConstructor() {
 		assertTrue(sut.size()==0);
 	}
 	
+	/**
+	 * Comprueba que se anhaden y obtienen elementos correctamente.
+	 */
 	@Test
 	public void testAddYGet() {
 		try {
@@ -90,18 +105,47 @@ public class ListaOrdenadaAcotadaTest {
 		}
 	}
 	
+	/**
+	 * Comprueba que se eliminan elementos correctamente.
+	 */
 	@Test
 	public void testRemove() {
-		sut.add(1);
-		sut.add(2);
-		sut.add(4);
-		sut.add(5);
-		sut.add(3);
-		sut.add(6);
-		sut.add(7);
-		sut.add(10);
-		sut.add(8);
-		sut.add(9);
+		
+		try {
+			sut.add(1);
+		} catch (IllegalStateException e) {
+			fail();
+		}
+		
+		try {
+			assertTrue(sut.remove(0) == 1);
+			assertTrue(sut.size() == 0);
+		} catch (IndexOutOfBoundsException e) {
+			fail("No deberían existir fallos en los índices.");
+		}
+		
+		try {
+			sut.remove(0);
+			fail("Debería haber lanzado IndexOutOfBoundsException.");
+		} catch (IndexOutOfBoundsException e) {
+		}
+		
+		
+		try {
+			sut.add(1);
+			sut.add(2);
+			sut.add(4);
+			sut.add(5);
+			sut.add(3);
+			sut.add(6);
+			sut.add(7);
+			sut.add(10);
+			sut.add(8);
+			sut.add(9);
+		} catch (IllegalStateException e) {
+			fail();
+		}
+		
 		try {
 			sut.remove(-1);
 			fail("Debería haber lanzado IndexOutOfBoundsException.");
@@ -126,6 +170,9 @@ public class ListaOrdenadaAcotadaTest {
 		}
 	}
 	
+	/**
+	 * Comprueba que se vacia la lista, o se obtiene su tamanho correctamente.
+	 */
 	@Test
 	public void testClearYSize() {
 		sut.add(2);
