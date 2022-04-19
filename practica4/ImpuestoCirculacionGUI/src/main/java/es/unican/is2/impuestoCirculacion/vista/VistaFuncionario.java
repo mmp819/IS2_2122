@@ -39,7 +39,9 @@ public class VistaFuncionario extends JFrame {
 	private DefaultListModel<String> listModel;
 	private JButton btnBuscar;
 
+	@SuppressWarnings("unused")
 	private IGestionContribuyentes contribuyentes;
+	@SuppressWarnings("unused")
 	private IGestionVehiculos vehiculos;
 	private IInfoImpuestoCirculacion info;
 
@@ -73,20 +75,24 @@ public class VistaFuncionario extends JFrame {
 		JLabel lblTotalContribuyente = new JLabel("Total A Pagar");
 		lblTotalContribuyente.setBounds(137, 254, 99, 14);
 		contentPane.add(lblTotalContribuyente);
+		lblTotalContribuyente.setName("lblTotalContribuyente");
 
 		listMatriculasVehiculos = new JList<String>();
 		listMatriculasVehiculos.setBounds(230, 98, 121, 116);
 		contentPane.add(listMatriculasVehiculos);
 		listMatriculasVehiculos.setBorder(new LineBorder(new Color(0, 0, 0)));
 		listMatriculasVehiculos.setModel(listModel);
+		listMatriculasVehiculos.setName("listMatriculasVehiculos");
 
 		JLabel lblVehiculos = new JLabel("Vehiculos");
 		lblVehiculos.setBounds(149, 93, 65, 14);
 		contentPane.add(lblVehiculos);
+		lblVehiculos.setName("lblVehiculos");
 
 		JLabel lblNombreContribuyente = new JLabel("Nombre");
 		lblNombreContribuyente.setBounds(155, 54, 65, 14);
 		contentPane.add(lblNombreContribuyente);
+		lblNombreContribuyente.setName("lblNombreContribuyente");
 
 		txtNombreContribuyente = new JTextField();
 		txtNombreContribuyente.setBounds(230, 51, 121, 20);
@@ -97,6 +103,7 @@ public class VistaFuncionario extends JFrame {
 		JLabel lblDatosContribuyente = new JLabel("Datos Contribuyente");
 		lblDatosContribuyente.setBounds(230, 11, 149, 14);
 		contentPane.add(lblDatosContribuyente);
+		lblDatosContribuyente.setName("lblDatosContribuyente");
 
 		txtDniContribuyente = new JTextField();
 		txtDniContribuyente.setBounds(10, 51, 113, 20);
@@ -119,15 +126,21 @@ public class VistaFuncionario extends JFrame {
 		contentPane.add(btnBuscar);
 		btnBuscar.setName("btnBuscar");
 		listMatriculasVehiculos.setVisible(true);
+		this.setVisible(true);
 	}
 
+	/**
+	 * Rellena la ventana con los datos pertenecientes al contribuyente cuyo DNI se pasa
+	 * como parametro.
+	 * @param dni DNI del contribuyente a buscar.
+	 */
 	private void rellenaDatosContribuyente(String dni) {
 		Contribuyente c = info.contribuyente(dni);
 		if (c != null) {
 			txtNombreContribuyente.setText(c.getNombre() + " " + c.getApellido1() + " " + c.getApellido2());
-			txtTotalContribuyente.setText(c.getNombre());
+			txtTotalContribuyente.setText(String.valueOf(c.totalAPagar()));
 			listModel.removeAllElements();
-			for (int i = 0; i < c.getVehiculos().size() - 1; i++) {
+			for (int i = 0; i < c.getVehiculos().size(); i++) {
 				Vehiculo v = c.getVehiculos().get(i);
 				listModel.addElement(v.getMatricula());
 			}
