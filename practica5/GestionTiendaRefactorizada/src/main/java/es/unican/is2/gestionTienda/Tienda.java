@@ -97,16 +97,13 @@ public class Tienda {
 		}
 		double importeFinal = importe;
 		if (v instanceof VendedorEnPlantilla) {
-			switch (((VendedorEnPlantilla) v).tipo()) {
-			case JUNIOR:
+			if (v instanceof VendedorJunior) {
 				importeFinal += importeFinal * 0.005;
-				break;
-			case SENIOR:
+			} else if (v instanceof VendedorSenior) {
 				importeFinal += importeFinal * 0.01;
-				break;
 			}
 		}
-		v.anhade(importeFinal);
+		v.anhadeVenta(importeFinal);
 		vuelcaDatos();
 		return true;
 	}
@@ -140,8 +137,8 @@ public class Tienda {
 				String dni= in.next();
 				in.next();
 				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.SENIOR);
-				ven.setT(totalVentas);
+				ven = new VendedorSenior(nombre, idIn, dni);
+				ven.setTotalVentas(totalVentas);
 				lista.add(ven);
 			}
 			// lee los vendedores junior
@@ -153,8 +150,8 @@ public class Tienda {
 				String dni= in.next();
 				in.next();
 				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.JUNIOR);
-				ven.setT(totalVentas);
+				ven = new VendedorJunior(nombre, idIn, dni);
+				ven.setTotalVentas(totalVentas);
 				lista.add(ven);
 			}
 			while (in.hasNext()) {
@@ -166,8 +163,8 @@ public class Tienda {
 				String dni= in.next();
 				in.next();
 				double totalVentas = in.nextDouble();
-				ven = new vendedorEnPracticas(nombre, idIn, dni);
-				ven.setT(totalVentas);
+				ven = new VendedorEnPracticas(nombre, idIn, dni);
+				ven.setTotalVentas(totalVentas);
 				lista.add(ven);
 			}
 		} catch (FileNotFoundException e) {
@@ -212,8 +209,8 @@ public class Tienda {
 				String dni= in.next();
 				in.next();
 				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.SENIOR);
-				ven.setT(totalVentas);
+				ven = new VendedorSenior(nombre, idIn, dni);
+				ven.setTotalVentas(totalVentas);
 				lista.add(ven);
 			}
 			// lee los vendedores junior
@@ -225,8 +222,8 @@ public class Tienda {
 				String dni= in.next();
 				in.next();
 				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.JUNIOR);
-				ven.setT(totalVentas);
+				ven = new VendedorJunior(nombre, idIn, dni);
+				ven.setTotalVentas(totalVentas);
 				lista.add(ven);
 			}
 			while (in.hasNext()) {
@@ -238,8 +235,8 @@ public class Tienda {
 				String dni= in.next();
 				in.next();
 				double totalVentas = in.nextDouble();
-				ven = new vendedorEnPracticas(nombre, idIn, dni);
-				ven.setT(totalVentas);
+				ven = new VendedorEnPracticas(nombre, idIn, dni);
+				ven.setTotalVentas(totalVentas);
 				lista.add(ven);
 			}
 		} catch (FileNotFoundException e) {
@@ -265,11 +262,11 @@ public class Tienda {
 		List<Vendedor> practicas = new LinkedList<Vendedor>();
 
 		for (Vendedor v : lista) {
-			if (v instanceof vendedorEnPracticas) {
+			if (v instanceof VendedorEnPracticas) {
 				practicas.add(v);
 			} else if (v instanceof VendedorEnPlantilla) {
 				VendedorEnPlantilla vp = (VendedorEnPlantilla) v;
-				if (vp.tipo().equals(TipoVendedor.JUNIOR))
+				if (vp instanceof VendedorJunior)
 					junior.add(vp);
 				else
 					senior.add(vp);
@@ -285,23 +282,20 @@ public class Tienda {
 			out.println();
 			out.println("Senior");
 			for (Vendedor v : senior) {
-				VendedorEnPlantilla v1 = (VendedorEnPlantilla) v;
-				out.println("  Nombre: " + v1.getNombre() + " Id: " + v1.getId() + " DNI: "+ v1.getDni()+" TotalVentasMes: "
-						+ v1.getTotalVentas());
+				VendedorSenior v1 = (VendedorSenior) v;
+				out.println(v1.toString());
 			}
 			out.println();
 			out.println("Junior");
 			for (Vendedor v : junior) {
-				VendedorEnPlantilla v2 = (VendedorEnPlantilla) v;
-				out.println("  Nombre: " + v2.getNombre() + " Id: " + v2.getId() + " DNI: "+ v2.getDni()+" TotalVentasMes: "
-						+ v2.getTotalVentas());
+				VendedorJunior v2 = (VendedorJunior) v;
+				out.println(v2.toString());
 			}
 			out.println();
 			out.println("Prácticas");
 			for (Vendedor v : practicas) {
-				vendedorEnPracticas v3 = (vendedorEnPracticas) v;
-				out.println("  Nombre: " + v3.getNombre() + " Id: " + v3.getId() + " DNI: "+ v3.getDni()+" TotalVentasMes: "
-						+ v3.getTotalVentas());
+				VendedorEnPracticas v3 = (VendedorEnPracticas) v;
+				out.println(v3.toString());
 			}
 
 		} finally {

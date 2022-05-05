@@ -1,7 +1,6 @@
 package es.unican.is2.gestionTienda;
 
-
-public abstract class VendedorEnPlantilla extends Vendedor {
+public class VendedorJunior extends VendedorEnPlantilla {
 	
 	/**
 	 * Retorna un nuevo vendedor en plantilla del tipo que se indica
@@ -9,7 +8,8 @@ public abstract class VendedorEnPlantilla extends Vendedor {
 	 * @param dni
 	 * @param tipo
 	 */
-	public VendedorEnPlantilla(String nombre, String id, String dni) {
+	public VendedorJunior(String nombre, String id, String dni) {
 		super(nombre, id, dni);
 	}
+
 }
