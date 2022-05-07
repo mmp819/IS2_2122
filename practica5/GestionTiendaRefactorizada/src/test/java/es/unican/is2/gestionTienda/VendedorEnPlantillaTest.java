@@ -24,23 +24,22 @@ public class VendedorEnPlantillaTest {
 		assertEquals(sutJunior.getNombre(), "Ana");
 		assertTrue(sutJunior instanceof VendedorJunior);
 		assertTrue(sutSenior instanceof VendedorSenior);
-		
 	}
 
 	@Test
 	public void testAnhadeVenta() {
 		
 		sutJunior.anhadeVenta(200);
-		assertEquals(sutJunior.getTotalVentas(), 200, 0);
+		assertEquals(sutJunior.getTotalVentas(), 201, 0);
 		
 		sutJunior.anhadeVenta(300);
-		assertEquals(sutJunior.getTotalVentas(), 500, 0);
+		assertEquals(sutJunior.getTotalVentas(), 502.5, 0);
 		
 		sutSenior.anhadeVenta(300);
-		assertEquals(sutSenior.getTotalVentas(), 300, 0);
+		assertEquals(sutSenior.getTotalVentas(), 303, 0);
 		
 		sutSenior.anhadeVenta(300);
-		assertEquals(sutSenior.getTotalVentas(), 600, 0);
+		assertEquals(sutSenior.getTotalVentas(), 606, 0);
 		
 	}
 	

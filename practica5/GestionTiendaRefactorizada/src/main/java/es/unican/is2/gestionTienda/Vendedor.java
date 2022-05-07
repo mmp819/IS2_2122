@@ -1,10 +1,13 @@
 package es.unican.is2.gestionTienda;
 
-
 /**
  * Vendedor de la tienda. 
  * Por cada vendedor se almacenan sus datos personales 
  * y sus datos sobre ventas y comisiones
+ * 
+ * @author Mario Martin Perez
+ * @version 1.0
+ * 
  */
 public abstract class Vendedor {
 	
@@ -20,6 +23,7 @@ public abstract class Vendedor {
 		this.nombre = nombre;
 		this.id = id;
 		this.dni = dni;
+		this.totalVentas = 0;
 	}
 	
 	/**
@@ -39,8 +43,8 @@ public abstract class Vendedor {
 	}
 	
 	/**
-	 * Retorna el dni del vendedor
-	 * @return dni
+	 * Retorna el id del vendedor
+	 * @return id
 	 */
 	public String getId() {
 		return id;

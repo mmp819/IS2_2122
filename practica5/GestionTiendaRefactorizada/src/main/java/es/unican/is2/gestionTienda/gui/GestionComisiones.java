@@ -3,7 +3,6 @@ package es.unican.is2.gestionTienda.gui;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
 
 import es.unican.is2.gestionTienda.Tienda;
@@ -66,18 +65,7 @@ public class GestionComisiones {
 
 			case VENDEDOR_DEL_MES:
 
-				vendedores = tienda.vendedores();
-				resultado = new LinkedList<Vendedor>();
-				double maxVentas = 0.0;
-				for (Vendedor v : vendedores) {
-					if (v.getTotalVentas() > maxVentas) {
-						maxVentas = v.getTotalVentas();
-						resultado.clear();
-						resultado.add(v);
-					} else if (v.getTotalVentas() == maxVentas) {
-						resultado.add(v);
-					}
-				}
+				resultado = tienda.vendedoresMes();
 
 				msj = "";
 				for (Vendedor vn : resultado) {
@@ -115,10 +103,10 @@ public class GestionComisiones {
 	
 	public static class ComparadorVendedorVentas implements Comparator<Vendedor>  {
 
-		public int compare(Vendedor o1, Vendedor o2) {
-			if (o1.getTotalVentas()>o2.getTotalVentas())
+		public int compare(Vendedor v1, Vendedor v2) {
+			if (v1.getTotalVentas()>v2.getTotalVentas())
 				return -1;
-			else if (o1.getTotalVentas()<o2.getTotalVentas())
+			else if (v1.getTotalVentas()<v2.getTotalVentas())
 				return 1;
 			return 0;
 		}
