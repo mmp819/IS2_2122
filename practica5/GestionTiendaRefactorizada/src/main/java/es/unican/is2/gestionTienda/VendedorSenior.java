@@ -16,7 +16,7 @@ public class VendedorSenior extends VendedorEnPlantilla {
 	 * @param id ID del vendedor.
 	 * @param dni DNI del vendedor.
 	 */
-	public VendedorSenior(String nombre, String id, String dni) {
+	public VendedorSenior(String nombre, String id, String dni) {  // WMC + 1
 		super(nombre, id, dni);
 	}
 	
@@ -24,7 +24,7 @@ public class VendedorSenior extends VendedorEnPlantilla {
 	 * Retorna la comision por venta obtenida por el vendedor senior.
 	 * @return comision por venta realizada.
 	 */
-	public double getComision() {
+	public double getComision() {  // WMC + 1
 		return COMISION;
 	}
 }

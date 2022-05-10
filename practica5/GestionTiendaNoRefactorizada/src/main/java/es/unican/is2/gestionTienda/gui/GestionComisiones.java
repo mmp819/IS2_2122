@@ -59,7 +59,7 @@ public class GestionComisiones {
 					if (!tienda.anhadeVenta(dni, importe)) { // WMC + 1   // CCog + 3
 						mensaje("ERROR", "El vendedor no existe");
 					}
-				} catch (IOException e) {  // CCog + 1
+				} catch (IOException e) {  // CCog + 3
 					mensaje("ERROR", "No se pudo guardar el cambio");
 				}
 				break;

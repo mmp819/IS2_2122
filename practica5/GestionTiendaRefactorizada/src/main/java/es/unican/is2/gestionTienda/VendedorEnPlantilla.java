@@ -14,12 +14,12 @@ public abstract class VendedorEnPlantilla extends Vendedor {
 	 * @param id ID del vendedor.
 	 * @param dni DNI del vendedor.
 	 */
-	public VendedorEnPlantilla(String nombre, String id, String dni) {
+	public VendedorEnPlantilla(String nombre, String id, String dni) { // WMC + 1
 		super(nombre, id, dni);
 	}
 	
 	@Override
-	public void anhadeVenta(double importe) {
+	public void anhadeVenta(double importe) {  // WMC + 1
 		super.anhadeVenta(importe * (100.0 + getComision()) / 100.0);
 	}
 	
@@ -27,5 +27,5 @@ public abstract class VendedorEnPlantilla extends Vendedor {
 	 * Los vendedores de la plantilla deberan poder retornar la comision de sus ventas.
 	 * @return porcentaje de comision por venta.
 	 */
-	public abstract double getComision();
+	public abstract double getComision();  
 }

@@ -24,6 +24,6 @@ public class vendedorEnPracticas extends Vendedor {
 		if (!(obj instanceof vendedorEnPracticas)) // WMC + 1   // CCog + 1
 			return false;
 		vendedorEnPracticas v = (vendedorEnPracticas) obj;
-		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); // WMC + 1   // CCog + 1
+		return (v.getId().equals(getId()) && v.getDni().equals(getDni()));  // CCog + 1
 	}
 }

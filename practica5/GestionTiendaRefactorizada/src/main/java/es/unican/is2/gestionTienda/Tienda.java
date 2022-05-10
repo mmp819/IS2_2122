@@ -32,7 +32,7 @@ public class Tienda {
 	 * 
 	 * @param datos Path absoluto del fichero de datos
 	 */
-	public Tienda(String datos) {
+	public Tienda(String datos) {  // WMC + 1
 		this.datos = datos;
 		leeFichero(lista);
 	}
@@ -41,7 +41,7 @@ public class Tienda {
 	 * Retorna la dirección de la tienda
 	 * @return Dirección de la tienda
 	 */
-	public String direccion() {
+	public String direccion() {  // WMC + 1
 		return direccion;
 	}
 
@@ -49,7 +49,7 @@ public class Tienda {
 	 * Retorna el nombre de la tienda
 	 * @return Nombre de la tienda
 	 */
-	public String nombre() {
+	public String nombre() {  // WMC + 1
 		return nombre;
 	}
 
@@ -60,9 +60,9 @@ public class Tienda {
 	 * @return true si el vendedor se ha anhadido 
 	 *         false si ya había un vendedor con el mismo id
 	 */
-	public boolean anhadeVendedor(Vendedor nuevoVendedor) throws IOException {
+	public boolean anhadeVendedor(Vendedor nuevoVendedor) throws IOException {  // WMC + 1
 		Vendedor v = buscaVendedor(nuevoVendedor.getId());
-		if (v != null) {
+		if (v != null) {  // WMC + 1   // CCog + 1
 			return false;
 		}
 		lista.add(nuevoVendedor);
@@ -77,9 +77,9 @@ public class Tienda {
 	 * @return true si se elimina el vendedor 
 	 *         false si no existe ningún vendedor con el id indicado
 	 */
-	public boolean eliminaVendedor(String id) throws IOException {
+	public boolean eliminaVendedor(String id) throws IOException {  // WMC + 1
 		Vendedor v = buscaVendedor(id);
-		if (v == null) {
+		if (v == null) {  // WMC + 1   // CCog + 1
 			return false;
 		}
 		lista.remove(v);
@@ -94,9 +94,9 @@ public class Tienda {
 	 * @return true si se añade la venta 
 	 *         false si no se encuentra el vendedor
 	 */
-	public boolean anhadeVenta(String id, double importe) throws IOException {
+	public boolean anhadeVenta(String id, double importe) throws IOException {  // WMC + 1
 		Vendedor v = buscaVendedor(id);
-		if (v == null) {
+		if (v == null) {  // WMC + 1   // CCog + 1
 			return false;
 		}
 
@@ -111,10 +111,10 @@ public class Tienda {
 	 * @param id Id del vendedor
 	 * @return vendedor con ese id o null si no existe ninguno
 	 */
-	public Vendedor buscaVendedor(String id) {
-		for (Vendedor v : lista) {
-			if (v.getId().equals(id)) {
-				return v;
+	public Vendedor buscaVendedor(String id) {  // WMC + 1
+		for (Vendedor v : lista) {  // WMC + 1     // CCog + 1
+			if (v.getId().equals(id)) {  // WMC + 1    // CCog + 2
+				return v; 
 			}
 		}
 		return null;
@@ -124,7 +124,7 @@ public class Tienda {
 	 * Retorna la lista de vendedores actuales de la tienda 
 	 * @return La lista de vendedores
 	 */
-	public List<Vendedor> vendedores() {
+	public List<Vendedor> vendedores() {  // WMC + 1
 		return lista;
 
 	}
@@ -133,15 +133,17 @@ public class Tienda {
 	 * Retorna una lista con el vendedor o los vendedores del mes.
 	 * @return lista con los vendedores del mes
 	 */
-	public List<Vendedor> vendedoresMes() {
+	public List<Vendedor> vendedoresMes() {  // WMC + 1
 		List<Vendedor> resultado = new LinkedList<Vendedor>();
 		double maxVentas = 0.0;
-		for (Vendedor v : lista) {
-			if (v.getTotalVentas() > maxVentas) {
+		
+		for (Vendedor v : lista) {  // WMC + 1   // CCog + 1
+			if (v.getTotalVentas() > maxVentas) {  // WMC + 1   // CCog + 2
 				maxVentas = v.getTotalVentas();
 				resultado.clear();
 				resultado.add(v);
-			} else if (v.getTotalVentas() == maxVentas) {
+				
+			} else if (v.getTotalVentas() == maxVentas) { // WMC + 1   // CCog + 1
 				resultado.add(v);
 			}
 		}
@@ -152,21 +154,23 @@ public class Tienda {
 	 * Método que actualiza el fichero datosTienda.txt 
 	 * con los datos actualizados de los vendedores
 	 */
-	private void vuelcaDatos() throws IOException {
+	private void vuelcaDatos() throws IOException {  // WMC + 1
 		PrintWriter out = null;
 		List<Vendedor> senior = new LinkedList<Vendedor>();
 		List<Vendedor> junior = new LinkedList<Vendedor>();
 		List<Vendedor> practicas = new LinkedList<Vendedor>();
 
-		for (Vendedor v : lista) {
-			if (v instanceof VendedorEnPracticas) {
+		for (Vendedor v : lista) {  // WMC + 1    // CCog + 1
+			if (v instanceof VendedorEnPracticas) {  // WMC + 1   // CCog + 2
 				practicas.add(v);
-			} else if (v instanceof VendedorEnPlantilla) {
+			} else if (v instanceof VendedorEnPlantilla) {  // WMC + 1  // CCog + 1
 				VendedorEnPlantilla vp = (VendedorEnPlantilla) v;
-				if (vp instanceof VendedorJunior)
+				if (vp instanceof VendedorJunior) { // WMC + 1  // CCog + 3
 					junior.add(vp);
-				else
+				}
+				else {  // CCog + 1
 					senior.add(vp);
+				}
 			}
 		}
 
@@ -187,7 +191,7 @@ public class Tienda {
 			out.println("Prácticas");
 			vuelcaListaVendedores(practicas, out);
 		} finally {
-			if (out != null)
+			if (out != null) // WMC + 1   // CCog + 1
 				out.close();
 		}
 	}
@@ -195,7 +199,7 @@ public class Tienda {
 	/**
 	 * Carga una nueva lista de vendedores.
 	 */
-	public void cargaNuevaLista() {
+	public void cargaNuevaLista() {  // WMC + 1
 		leeFichero(lista);
 	}
 	
@@ -204,7 +208,7 @@ public class Tienda {
 	 * 
 	 * @param listaVendedores Lista en la que realizar lectura.
 	 */
-	private void leeFichero(List<Vendedor> listaVendedores) {
+	private void leeFichero(List<Vendedor> listaVendedores) {  // WMC + 1
 		Scanner in = null;
 		try {
 			// abre el fichero
@@ -216,23 +220,23 @@ public class Tienda {
 			in.next();
 
 			// lee los vendedores senior
-			while (in.hasNext() && !in.next().equals("Junior")) {
+			while (in.hasNext() && !in.next().equals("Junior")) { // WMC + 1   // CCog + 1
 				
 				leeVendedor(in, TipoVendedor.SENIOR, listaVendedores);
 			}
 			
 			// lee los vendedores junior
-			while (in.hasNext() && !in.next().equals("Prácticas")) {
+			while (in.hasNext() && !in.next().equals("Prácticas")) {  // WMC + 1    // CCog + 1
 				leeVendedor(in, TipoVendedor.JUNIOR, listaVendedores);
 			}
-			while (in.hasNext()) {
+			while (in.hasNext()) {  // WMC + 1    // CCog + 1
 				in.next();
 				leeVendedor(in, TipoVendedor.PRACTICAS, listaVendedores);
 			}
-		} catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {  // CCog + 1
 
 		} finally {
-			if (in != null) {
+			if (in != null) {  // WMC + 1   // CCog + 1
 				in.close();
 			}
 		} // try
@@ -245,7 +249,7 @@ public class Tienda {
 	 * @param tipo Tipo de vendedor a agregar.
 	 * @param listaVendedores Lista en la que realizar lectura.
 	 */
-	private void leeVendedor(Scanner in, TipoVendedor tipo, List<Vendedor> listaVendedores) {
+	private void leeVendedor(Scanner in, TipoVendedor tipo, List<Vendedor> listaVendedores) { // WMC + 1
 		String nombre = in.next();
 		in.next();
 		String idIn = in.next();
@@ -255,14 +259,14 @@ public class Tienda {
 		double totalVentas = in.nextDouble();
 		Vendedor ven = null;
 		
-		switch(tipo) {
-			case SENIOR:
+		switch(tipo) {  // CCog + 1
+			case SENIOR: // WMC + 1
 				ven = new VendedorSenior(nombre, idIn, dni);
 				break;
-			case JUNIOR:
+			case JUNIOR: // WMC + 1
 				ven = new VendedorJunior(nombre, idIn, dni);
 				break;
-			case PRACTICAS:
+			case PRACTICAS: // WMC + 1
 				ven = new VendedorEnPracticas(nombre, idIn, dni);
 				break;
 		}
@@ -277,8 +281,8 @@ public class Tienda {
 	 * @param vendedores Lista de vendedores a volcar.
 	 * @param out Salida en la que escribir.
 	 */
-	private void vuelcaListaVendedores(List<Vendedor> vendedores, PrintWriter out) {
-		for (Vendedor v : vendedores) {
+	private void vuelcaListaVendedores(List<Vendedor> vendedores, PrintWriter out) { // WMC + 1
+		for (Vendedor v : vendedores) { // WMC + 1  // CCog + 1
 			out.println(v.toString());
 		}
 	}

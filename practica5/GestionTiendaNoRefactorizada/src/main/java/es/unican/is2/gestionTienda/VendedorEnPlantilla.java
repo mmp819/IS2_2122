@@ -31,6 +31,6 @@ public class VendedorEnPlantilla extends Vendedor {
 		if (!(obj instanceof VendedorEnPlantilla))  // WMC + 1   // CCog + 1
 			return false;
 		VendedorEnPlantilla v = (VendedorEnPlantilla) obj;
-		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); // WMC + 1   // CCog + 1
+		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); // CCog + 1
 	}
 }
